@@ -3,7 +3,6 @@ import { GlobalStyles } from "./styles/Global.styled";
 import { ThemeProvider } from "styled-components";
 import {lightTheme, darkTheme } from './styles/Theme';
 import { useContext } from 'react';
-import {ModalContextProvider} from "./contexts/ModelContext" 
 import  { ThemeContext} from "./contexts/ThemeContext"
 
 function App() {
@@ -13,10 +12,8 @@ function App() {
   
   return (
     <ThemeProvider theme={mode}>
-      <ModalContextProvider>
         <GlobalStyles />
         <Router />
-      </ModalContextProvider>
     </ThemeProvider>
   );
 }

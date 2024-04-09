@@ -1,19 +1,19 @@
 import React, { useContext } from "react";
 import ReactDOM from "react-dom";
 import { ModalContext } from "../../contexts/ModelContext";
+import { ModalBackdrop, ModalContainer } from "./Modal.styled";
 
-function ModalTempate() {
-  const { handelModal, modalContent, modal } = useContext(ModalContext);
-
+function ModalTemplate() {
+  const { modalContent, modal } = useContext(ModalContext);
   if (modal) {
     return ReactDOM.createPortal(
-      <ModalBackDrop>
+      <ModalBackdrop>
         <ModalContainer>{modalContent}</ModalContainer>
-      </ModalBackDrop>,
+      </ModalBackdrop>,
       document.getElementById("modal-root")
     );
   }
   return null;
 }
 
-export default ModalTempate;
+export default ModalTemplate;

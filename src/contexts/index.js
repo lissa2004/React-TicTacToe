@@ -7,9 +7,7 @@ function Provider({ children }) {
   return (
     <ThemeContextProvider>
       <GameContextProvider>
-        <SoundEffectsContextProvider>
-        {children}
-        </SoundEffectsContextProvider>
+        <SoundEffectsContextProvider>{children}</SoundEffectsContextProvider>˝
       </GameContextProvider>
     </ThemeContextProvider>
   );

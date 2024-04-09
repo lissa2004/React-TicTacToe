@@ -1,25 +1,26 @@
-import React, { useContext } from 'react';
-import {Title, Subtitle} from "../../styles/General.styled";
-import  Button  from '../../components/Button/Button';
-import { useNavigate } from 'react-router-dom';
-import { Container } from '../../styles/General.styled';
-import { SoundEffectsContext } from '../../contexts/SoundEffectsContext';
+import React, { useContext } from "react";
+import { Container, Title, Subtitle } from "../../styles/General.styled";
+import Button from "../../components/Button/Button";
+import { useNavigate } from "react-router-dom";
+import { SoundEffectsContext } from "../../contexts/SoundEffectsContext";
 
 function Home() {
   const navigate = useNavigate();
-  const {hoverSfx, clickSfx} = useContext(SoundEffectsContext);
+  const { hoverSfx, clickSfx } = useContext(SoundEffectsContext);
   return (
     <Container columnBased>
-    <Title>TicTacToe</Title>
-    <Subtitle>Play with your friends the highest score wins!!</Subtitle>
-    <Button onClick={() =>{
-     clickSfx();
-     navigate('/games');
-     
-    }}
-    onMouseEnter={() => hoverSfx()}>Play Now</Button>
+      <Title>TicTacToe</Title>
+      <Subtitle>Play with your friends, higher score wins!</Subtitle>
+      <Button
+        onClick={() => {
+          clickSfx();
+          navigate("/game-on");
+        }}
+        onMouseEnter={() => hoverSfx()}
+      >
+        Play Now
+      </Button>
     </Container>
-  
   );
 }
 

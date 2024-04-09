@@ -1,36 +1,35 @@
 import React, { useContext } from "react";
-import { Title, Subtitle } from "../../../styles/General.styles";
+import { Title, Subtitle } from "../../../styles/General.styled";
 import { ModalHeader, ModalBody, ModalFooter } from "../Modal.styled";
 import Button from "../../Button/Button";
 import { GameContext } from "../../../contexts/GameContext";
-import { ModelContext } from "../../../contexts/ModelContext";
+import { ModalContext } from "../../../contexts/ModelContext";
 import { SoundEffectsContext } from "../../../contexts/SoundEffectsContext";
 import { useNavigate } from "react-router-dom";
 
-
-const RoundOverModel = () => {
+function RoundOverModal() {
   const { resetBoard, game, restartGame } = useContext(GameContext);
-  const { handleModal } = useContext(ModelContext);
-  const {hoverSfx, clickSfx, completeSfx} = useContext(SoundEffectsContext); 
+  const { handleModal } = useContext(ModalContext);
+  const { hoverSfx, clickSfx, completedSfx } = useContext(SoundEffectsContext);
 
   const navigate = useNavigate();
-
+  
   return (
     <>
       <ModalHeader>
-        <Title Primary>
+        <Title primary>
           {game.roundWinner
-            ? `${game.roundWinner.name}Wins this Round`
-            : "Round Drawn"}
+            ? `${game.roundWinner.name} Wins Round`
+            : "Round drawn"}
         </Title>
       </ModalHeader>
       <ModalBody>
-        <Subtitle primary>Choice will be switched</Subtitle>
+        <Subtitle primary>Choices will be switched now.</Subtitle>
         <Subtitle primary>
-          {game.player1.name} : {game.player1.score}{" "}
+          {game.player1.name}: {game.player1.score}
         </Subtitle>
         <Subtitle primary>
-          {game.player2.name} : {game.player2.score}
+          {game.player2.name}: {game.player2.score}
         </Subtitle>
       </ModalBody>
       <ModalFooter>
@@ -38,26 +37,26 @@ const RoundOverModel = () => {
           color="#f9c811"
           onClick={() => {
             clickSfx();
-            resetBoard();
             handleModal();
-            navigate("/")
-          }} onMouseEnter={() => hoverSfx()} 
+            resetBoard();
+            
+          }}
+          onMouseEnter={() => hoverSfx()}
         >
           Continue
         </Button>
-        <Button color="#8437f9" 
-        onClick={() =>{
+        <Button color="#8437f9" onClick={() => {
+          completedSfx();
           restartGame();
           handleModal();
-          completeSfx();
-          navigate("/");
-        }}
-        onMouseEnter={() => hoverSfx()} >
-          Restart
-        </Button>
+          navigate("/")
+          
+          
+          
+        }} onMouseEnter={() => hoverSfx()}>Restart</Button>
       </ModalFooter>
     </>
   );
-};
+}
 
-export default RoundOverModel;
+export default RoundOverModal;

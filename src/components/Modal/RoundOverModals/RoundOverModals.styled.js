@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Title = styled.h1`
-   color:${(props) => props.theme.colors.primary};
+   color:${(props) => props.theme.colors.primary ? props.theme.colors.primary :props.theme.colors.secondary};
    font-size: 3rem;
    background-color: transparent;
    font-family: "Pacifico", cursive;
@@ -9,7 +9,7 @@ export const Title = styled.h1`
 
 export const Subtitle = styled.h1`
 
-   color: ${(props) => props.theme.colors.primary};
+   color: ${(props) => props.theme.colors.primary ? props.theme.colors.primary :props.theme.colors.secondary};
    font-size: 1.5rem;
    font-family: 'poppias', sans-serif
    font-weight: 200;
@@ -17,7 +17,7 @@ export const Subtitle = styled.h1`
    padding:10px
 `;
 
-export const ModalHeader = styled.div`
+export const RoundOverModal = styled.div`
    display:flex;
    justify-content:center;
 `;

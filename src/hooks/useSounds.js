@@ -1,26 +1,25 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 
-const useSounds = (url, options) =>{
-    const[sound, setSound] = useState(false);
-   useEffect(() =>{
-     const audio =new Audio(url);
+const useSound = (url, options) => {
+  const [sound, setSound] = useState(false);
 
-     audio.load()
-     audio.volume = options.volumn;
-     setSound(audio);
-   }, [])
-   
-   return () =>{
-    if(sound){
-        sound.play();
-       }
+  useEffect(() => {
+    const audio = new Audio(url);
+
+    audio.load();
+    audio.volume = options.volume;
+    setSound(audio);
+  },[options.volume, url]); 
+
+  return () => {
+    if (sound) {
+      sound.play();
+    }
     setTimeout(() => {
-       sound.pause();
-       sound.currentTime(0)
-    }, options.timeout)
-   }
-}
+      sound.pause();
+      sound.currentTime = 0;
+    }, options.timeout);
+  };
+};
 
-
-
-export default useSounds
+export default useSound;
